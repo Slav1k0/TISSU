@@ -3,6 +3,7 @@ using namespace TISSU_Serialization;
 
 
 // g++ -std=c++20 save.cpp -o tissu.exe
+
 int main()
 {
     struct Vector2
@@ -13,7 +14,8 @@ int main()
     struct GameState
     {
         Vector2 playerPos { 100.0f, 100.0f };
-        float percentageLevelProgress { 12.5f };
+        float levelProgress { 12.5f };
+
         double money {1048.55};
         int achievements { 40 };
         std::string inGameTime {"12:55"};
@@ -23,7 +25,8 @@ int main()
     const char* fileName = "config1.tissu";
 
     Vector2 position = gameState.playerPos;
-    float levelProgress = gameState.percentageLevelProgress;
+    float levelProgress = gameState.levelProgress;
+
     double money = gameState.money;
     int achievements = gameState.achievements;
     std::string inGameTime = gameState.inGameTime;
@@ -64,6 +67,7 @@ int main()
     tissu.BeginStruct("settings");
         IndentAndApplyForAll(tissu, settings);
     tissu.EndStruct();
+
 
     return 0;
 }
