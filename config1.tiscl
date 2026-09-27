@@ -1,9 +1,0 @@
-<gamestate:
-    (vec2)position: 100, 100
-    (f)levelProgress: 12.5
-    (d)money: 1048.55
-    (i)achievements: 40
-    (str)inGameTime: 12:55
-    (stdvec_string)inventory: assault rifle, pistol, grenade, knife, smoke grenade, bandage
-    (stdarr_string[3])choosenAbilities: Freeze Ground, Frozen Stance, Frozen Spear
->
