@@ -1,3 +1,13 @@
+/**
+ * TISSU: Typed, Indentation Separated Scripting Utility
+ * 
+ * @author          Ondřej Slavík
+ * @copyright       2026 (C) Ondřej Slavík
+ * 
+ * Released under the MIT License.
+ * See: https://opensource.org/licenses/MIT
+ */
+
 #pragma once
 
 #include <charconv>
