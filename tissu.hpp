@@ -129,7 +129,7 @@ namespace TISSU_Serialization {
             TypeRegistry& RegisterStdArrayTypeAndCount(std::string tag) {
                 auto type = byType.find(std::type_index(typeid(T)));
                 if (type == byType.end()) {
-                    throw std::runtime_error("TISCL: Cannot register array because element type is not registered yet!'" + std::string(tag) + "'");
+                    throw std::runtime_error("TISSU: Cannot register array because element type is not registered yet!'" + std::string(tag) + "'");
                 }
 
                 auto elementWriter = type->second.write;
@@ -183,24 +183,20 @@ namespace TISSU_Serialization {
         
 
         void writeIndent() {
-            for (int i = 0; i < indentLevel; ++i) fileStream << indentation;
+            for (int i = 0; i < indentLevel; ++i) { fileStream << indentation; }
         }
 
         public:
             TissuSerializer(std::shared_ptr<TypeRegistry> reg = nullptr) : fileStream(), registry(reg ? reg : std::make_shared<TypeRegistry>()) {
-                if(!reg) {
-                    registry->RegisterBuiltins();
-                }
+                if(!reg) { registry->RegisterBuiltins(); }
             } // default constructor
         
             explicit TissuSerializer(const char* fileName, std::shared_ptr<TypeRegistry> reg = nullptr) : fileStream(fileName), registry(reg ? reg : std::make_shared<TypeRegistry>()) {
                 if (!fileStream.is_open()) {
-                    throw std::runtime_error(std::string("TISCL: cannot open ") + fileName);
+                    throw std::runtime_error(std::string("TISSU: cannot open ") + fileName);
                 }
 
-                if(!reg) {
-                    registry->RegisterBuiltins();
-                }       
+                if(!reg) { registry->RegisterBuiltins(); }       
             }
 
             std::shared_ptr<TypeRegistry> GetRegistry() const {
@@ -224,7 +220,7 @@ namespace TISSU_Serialization {
             TissuSerializer& Member(std::string_view name, const T& value) {
                 auto it = registry->byType.find(std::type_index(typeid(T)));
                 if (it == registry->byType.end()) {
-                    throw std::runtime_error("TISCL: no identifier registered for member '" + std::string(name) + "'");
+                    throw std::runtime_error("TISSU: no identifier registered for member '" + std::string(name) + "'");
                 }
 
                 writeIndent();
@@ -239,7 +235,7 @@ namespace TISSU_Serialization {
             TissuSerializer& StdVectorOrArrayMember(std::string_view name, const T& value, std::size_t arraySize = 0) {
                 auto it = registry->byType.find(std::type_index(typeid(T)));
                 if (it == registry->byType.end()) {
-                    throw std::runtime_error("TISCL: no identifier registered for member '" + std::string(name) + "'");
+                    throw std::runtime_error("TISSU: no identifier registered for member '" + std::string(name) + "'");
                 }
 
                 writeIndent();
@@ -261,7 +257,7 @@ namespace TISSU_Serialization {
             TissuSerializer& ApplyForAllMembers(std::vector<std::tuple<std::string, T>> items) {
                 auto it = registry->byType.find(std::type_index(typeid(T)));
                 if (it == registry->byType.end()) {
-                    throw std::runtime_error("TISCL: no identifier registered for member '" + std::string("") + "'");
+                    throw std::runtime_error("TISUU: no identifier registered for member '" + std::string("") + "'");
                 }
 
                 writeIndent();
@@ -306,8 +302,10 @@ namespace TISSU_Deserialization {
 
                 // 5. Error handling
                 if (!fileInput.is_open()) {
-                    throw std::runtime_error("TISCL: cannot open " + fileName);
+                    throw std::runtime_error("TISUU: cannot open " + fileName);
                 }
+
+                return *this;
             }
     };      
 }
